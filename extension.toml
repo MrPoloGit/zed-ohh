@@ -1,0 +1,15 @@
+id = "ohh"
+name = "OHH"
+description = "Syntax highlighting and language-server support (diagnostics, hover, completion) for OHH (.ohh) Open Hand History files, backed by ohh-ls."
+version = "0.1.0"
+schema_version = 1
+authors = []
+repository = "https://github.com/REPLACE_ME/zed-ohh"
+
+[language_servers.ohh-ls]
+name = "ohh-ls"
+languages = ["OHH"]
+
+[grammars.ohh]
+repository = "https://github.com/MrPoloGit/tree-sitter-ohh"
+commit = "464c6d263d1f05e63c227ba4928f90728d8b7a2e"

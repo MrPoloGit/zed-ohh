@@ -1,0 +1,22 @@
+# Checked against Zed's own real, current built-in JSON language config
+# (crates/grammars/src/json/config.toml, fetched from zed-industries/zed's
+# main branch), JSON is built into Zed itself, not a separate extension,
+# so that file is the closest real reference for a JSON-shaped language.
+#
+# Deliberately diverges from it in one way, not by oversight: Zed's own
+# JSON config sets `line_comments = ["// "]` even though standard JSON has
+# no comment syntax, apparently a permissive choice for JSON-with-
+# comments dialects some of Zed's supported JSON files use. OHH's own
+# spec has no comment syntax at all and nothing in this project treats it
+# as permissive, so `line_comments` is omitted entirely here
+# rather than copied, matching this project's own posture, not Zed's.
+name = "OHH"
+grammar = "ohh"
+path_suffixes = ["ohh"]
+autoclose_before = ",]}"
+brackets = [
+  { start = "{", end = "}", close = true, surround = true, newline = true },
+  { start = "[", end = "]", close = true, surround = true, newline = true },
+  { start = "\"", end = "\"", close = true, surround = true, newline = false, not_in = ["string"] },
+]
+tab_size = 2
