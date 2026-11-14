@@ -16,7 +16,7 @@ Produces `target/wasm32-wasip2/release/zed_ohh.wasm` (289 KB, matching
 `zed-phh`'s own build size, unsurprising, since both shims use
 essentially the same `zed_extension_api` surface).
 
-## Install (once the grammar repo is published, see "What's blocking a real install" below)
+## Install (dev extension only, not published to Zed's extension registry, see below)
 
 Zed → command palette → `zed: extensions` → "Install Dev Extension" →
 select this directory. Then in Zed's `settings.json`:
@@ -74,14 +74,16 @@ select this directory. Then in Zed's `settings.json`:
   headless Zed CLI mode exists for extension testing, and this session
   avoids an unrequested GUI launch. If you install this as a dev
   extension, please report back what works.
-- **The grammar has no real git repository to build from yet.**
-  `extension.toml`'s `[grammars.ohh]` has placeholder `repository`/
-  `commit` values, Zed's extension packaging fetches and builds a
-  grammar from a real git repository and commit; it does not support a
-  purely local/vendored grammar path. This extension **cannot actually
-  load OHH syntax highlighting in Zed**, even via "Install Dev
-  Extension", until `tree-sitter-ohh` is pushed somewhere Zed can clone
-  it from. This is the exact same standing blocker `zed-phh` has for
-  `tree-sitter-phh`/`tree-sitter-phh-actions`, resolve both at once if
-  resolving either, since it's one hosting decision, not two separate
-  problems.
+- **The grammar is now pushed and pinned, this blocker is resolved.**
+  `extension.toml`'s `[grammars.ohh]` points at a real, pushed
+  repository (`github.com/MrPoloGit/tree-sitter-ohh`) at a real commit,
+  confirmed matching that repo's remote `HEAD` via `git ls-remote`, not
+  a placeholder. Update the pinned commit again after that grammar repo
+  gets a new commit, Zed pins to an exact commit, not a branch.
+- **This extension itself is still not published to Zed's actual
+  extension registry** (`zed-industries/extensions`, a git submodule
+  per repo, see `docs/editor-extension-publishing.md`). `zed-ohh`'s own
+  `repository` field is still a placeholder, since `zed-ohh` isn't a
+  git repo yet. Until both are done, "Install Dev Extension" (pointing
+  at this local directory) is the only way to load it, it will not
+  appear in Zed's in-app extension browser.
