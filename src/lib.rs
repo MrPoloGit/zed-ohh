@@ -34,16 +34,16 @@ impl zed::Extension for OhhExtension {
             .ok_or_else(|| {
                 "ohh-ls not found. Set it in Zed's settings.json: \
                  \"lsp\": {\"ohh-ls\": {\"binary\": {\"path\": \"/absolute/path/to/ohh-ls\", \
-                 \"arguments\": [\"/absolute/path/to/ohh/registry\"]}}}}"
+                 \"arguments\": [\"/absolute/path/to/ohh-data/registry\"]}}}}"
                     .to_string()
             })?;
 
         let args = binary_settings
             .and_then(|b| b.arguments)
             .ok_or_else(|| {
-                "ohh-ls needs the path to ohh/registry as its one argument. Set it in Zed's \
+                "ohh-ls needs the path to ohh-data/registry as its one argument. Set it in Zed's \
                  settings.json: \"lsp\": {\"ohh-ls\": {\"binary\": {\"arguments\": \
-                 [\"/absolute/path/to/ohh/registry\"]}}}}"
+                 [\"/absolute/path/to/ohh-data/registry\"]}}}}"
                     .to_string()
             })?;
 

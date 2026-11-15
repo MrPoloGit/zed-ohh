@@ -27,7 +27,7 @@ select this directory. Then in Zed's `settings.json`:
     "ohh-ls": {
       "binary": {
         "path": "/absolute/path/to/ohh-ls/build/ohh-ls",
-        "arguments": ["/absolute/path/to/ohh/registry"]
+        "arguments": ["/absolute/path/to/ohh-data/registry"]
       }
     }
   }
@@ -64,7 +64,7 @@ select this directory. Then in Zed's `settings.json`:
 ## How this was verified
 
 - **Compiles for the real target**: `cargo build --target wasm32-wasip2 --release` succeeds cleanly, producing a real 289 KB `.wasm` module.
-- **Every query file checked with `tree-sitter query` against the real corpus** (`../ohh/corpus/`), `brackets.scm`, `indents.scm`, `outline.scm`, `highlights.scm` all produce the expected captures on every `valid/`/`invalid` fixture, zero error-like output.
+- **Every query file checked with `tree-sitter query` against the real corpus** (`../ohh-data/corpus/`), `brackets.scm`, `indents.scm`, `outline.scm`, `highlights.scm` all produce the expected captures on every `valid/`/`invalid` fixture, zero error-like output.
 - **Both TOML config files parse** (`extension.toml`, `languages/ohh/config.toml`), checked with Python's `tomllib`.
 - **The schema was checked against a real, current Zed reference**, not written from memory. Since there is no separate `zed-extensions/json` community extension (confirmed: that repo 404s), the reference used is Zed's own built-in JSON support, fetched directly from `zed-industries/zed`'s `crates/grammars/src/json/` on `main`. `brackets.scm` and `indents.scm` here are structurally identical to that real file; `config.toml` and `highlights.scm` diverge in the two specific, explained ways above.
 

@@ -12,4 +12,4 @@ languages = ["OHH"]
 
 [grammars.ohh]
 repository = "https://github.com/MrPoloGit/tree-sitter-ohh"
-commit = "464c6d263d1f05e63c227ba4928f90728d8b7a2e"
+commit = "f971ba431a95ee141e22bf34d05468b475e938f3"
